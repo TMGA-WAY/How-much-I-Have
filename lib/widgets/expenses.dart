@@ -15,7 +15,7 @@ class Expenses extends StatefulWidget {
 class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = <Expense>[
     Expense(
-        title: "flutter",
+        title: "Flutter",
         cost: 99.99,
         date: DateTime.now(),
         category: Category.work),
@@ -78,6 +78,8 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     Widget mainContent = const Center(
       child: Text("No Expense found. Start adding some!"),
     );
@@ -98,9 +100,13 @@ class _ExpensesState extends State<Expenses> {
           )
         ],
       ),
-      body: Column(
+      body: width < 600? Column(
         children: [Text('Expenses'), Expanded(child: mainContent)],
-      ),
+      ) : 
+      Row(
+              children: [Text('Expenses'), Expanded(child: mainContent)],
+            )
+      ,
     );
   }
 }
